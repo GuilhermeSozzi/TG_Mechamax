@@ -1,4 +1,6 @@
-### Projeto de TG em Andamento!
+# Projeto de TG em Andamento!
 
-## Plataforma para oficinas mecânicas
+## Plataforma Web de gestão de dados para oficinas mecânicas
+
+### Sobre
 Descrição em andamento.
