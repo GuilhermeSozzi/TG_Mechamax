@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gerenciar Tipos de Serviço</title>
+    <link rel="stylesheet" th:href="@{/index.css}" />
+  </head>
+  <body>
+    <div th:replace="~{fragments/header :: header}"></div>
+    <div class="container">
+      <h1>Tipos de Serviço cadastrados no sistema</h1>
+
+      <div>
+        <h2>Lista de Tipos de Serviço</h2>
+        <div style="margin-bottom: 15px">
+          <a th:href="@{/tipoServico/novo}" class="btn btn-primary"
+            >Adicionar Novo Tipo de Serviço</a
+          >
+        </div>
+
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="tipoServico : ${tipoServicos}">
+              <td th:text="${tipoServico.idTipo}"></td>
+              <td th:text="${tipoServico.nome}"></td>
+              <td>
+                <a
+                  th:href="@{/tipoServico/editar/{id}(id=${tipoServico.idTipo})}"
+                  class="btn btn-secondary"
+                  >Editar</a
+                >
+                <a
+                  th:href="@{/tipoServico/excluir/{id}(id=${tipoServico.idTipo})}"
+                  class="btn btn-danger"
+                  >Excluir</a
+                >
+                <a
+                  th:href="@{/tipoServico/detalhes/{id}(id=${tipoServico.idTipo})}"
+                  class="btn btn-primary"
+                  >Detalhes</a
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

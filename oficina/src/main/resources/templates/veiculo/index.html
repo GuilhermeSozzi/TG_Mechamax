@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gerenciar Veículos</title>
+    <link rel="stylesheet" th:href="@{/index.css}" />
+  </head>
+  <body>
+    <div th:replace="~{fragments/header :: header}"></div>
+    <div class="container">
+      <h1>Veículos cadastrados no sistema</h1>
+
+      <div>
+        <h2>Lista de Veículos</h2>
+        <div style="margin-bottom: 15px">
+          <a th:href="@{/veiculo/novo}" class="btn btn-primary"
+            >Adicionar Novo Veículo</a
+          >
+        </div>
+
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Placa</th>
+              <th>Tipo</th>
+              <th>Ano</th>
+              <th>Quilometragem</th>
+              <th>Modelo</th>
+              <th>Cliente</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="veiculo : ${veiculos}">
+              <td th:text="${veiculo.veiCodigo}"></td>
+              <td th:text="${veiculo.placa}"></td>
+              <td th:text="${veiculo.tipoVeiculo}"></td>
+              <td th:text="${veiculo.anoModelo}"></td>
+              <td th:text="${veiculo.quilometragem}"></td>
+              <td
+                th:text="${veiculo.modelo != null ? veiculo.modelo.nome : 'N/A'}"
+              ></td>
+              <td
+                th:text="${veiculo.cliente != null ? veiculo.cliente.nome : 'N/A'}"
+              ></td>
+              <td>
+                <a
+                  th:href="@{/veiculo/editar/{id}(id=${veiculo.veiCodigo})}"
+                  class="btn btn-secondary"
+                  >Editar</a
+                >
+                <a
+                  th:href="@{/veiculo/excluir/{id}(id=${veiculo.veiCodigo})}"
+                  class="btn btn-danger"
+                  >Excluir</a
+                >
+                <a
+                  th:href="@{/veiculo/detalhes/{id}(id=${veiculo.veiCodigo})}"
+                  class="btn btn-primary"
+                  >Detalhes</a
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

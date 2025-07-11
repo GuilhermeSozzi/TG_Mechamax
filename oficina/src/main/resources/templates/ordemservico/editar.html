@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Editar Ordem de Serviço</title>
+    <link rel="stylesheet" th:href="@{/index.css}" />
+  </head>
+  <body>
+    <div th:replace="~{fragments/header :: header}"></div>
+    <div class="container">
+      <h1>Editar Ordem de Serviço</h1>
+
+      <form
+        th:action="@{/ordemservico/editar}"
+        th:object="${ordemservico}"
+        method="post"
+        class="app-form"
+      >
+        <input type="hidden" th:field="*{codOrdem}" />
+
+        <div class="form-group">
+          <label for="valorOrdem">Valor:</label>
+          <input
+            type="number"
+            id="valorOrdem"
+            th:field="*{valorOrdem}"
+            step="0.01"
+            min="0"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="numeroParcelas">Número de Parcelas:</label>
+          <input
+            type="number"
+            id="numeroParcelas"
+            th:field="*{numeroParcelas}"
+            min="1"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="observacoes">Observações:</label>
+          <textarea
+            id="observacoes"
+            th:field="*{observacoes}"
+            maxlength="255"
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="veiculo">Veículo (Placa):</label>
+          <select id="veiculo" th:field="*{veiculo}" required>
+            <option
+              th:each="veiculo : ${veiculos}"
+              th:value="${veiculo.veiCodigo}"
+              th:text="${veiculo.placa}"
+            ></option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="funcionario">Funcionário Responsável:</label>
+          <select id="funcionario" th:field="*{funcionario}" required>
+            <option
+              th:each="funcionario : ${funcionarios}"
+              th:value="${funcionario.idFuncionario}"
+              th:text="${funcionario.nome}"
+            ></option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="tipoServico">Tipo de Serviço:</label>
+          <select id="tipoServico" th:field="*{tipoServico}" required>
+            <option
+              th:each="tipoServico : ${tiposServico}"
+              th:value="${tipoServico.idTipo}"
+              th:text="${tipoServico.nome}"
+            ></option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+        <a th:href="@{/ordemservico}" class="btn btn-secondary"
+          >Voltar para a lista</a
+        >
+      </form>
+    </div>
+  </body>
+</html>

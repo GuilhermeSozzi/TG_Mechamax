@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Editar Modelo</title>
+    <link rel="stylesheet" th:href="@{/index.css}" />
+  </head>
+  <body>
+    <div th:replace="~{fragments/header :: header}"></div>
+    <div class="container">
+      <h1>Editar Modelo</h1>
+      <form
+        th:action="@{/modelo/editar}"
+        th:object="${modelo}"
+        method="post"
+        class="app-form"
+      >
+        <input type="hidden" th:field="*{idModelo}" />
+        <div class="form-group">
+          <label for="nome">Nome do Modelo:</label>
+          <input
+            type="text"
+            id="nome"
+            th:field="*{nome}"
+            minlength="1"
+            maxlength="30"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+        <a th:href="@{/modelo}" class="btn btn-secondary"
+          >Voltar para a lista</a
+        >
+      </form>
+    </div>
+  </body>
+</html>

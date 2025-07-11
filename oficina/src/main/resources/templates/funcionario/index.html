@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gerenciar Funcionários</title>
+    <link rel="stylesheet" th:href="@{/index.css}" />
+  </head>
+  <body>
+    <div th:replace="~{fragments/header :: header}"></div>
+    <div class="container">
+      <h1>Funcionários cadastrados no sistema</h1>
+
+      <div>
+        <h2>Lista de Funcionários</h2>
+        <div style="margin-bottom: 15px">
+          <a th:href="@{/funcionario/novo}" class="btn btn-primary"
+            >Adicionar Novo Funcionário</a
+          >
+        </div>
+
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>CPF</th>
+              <th>E-mail</th>
+              <th>Cargo</th>
+              <th>Salário</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="funcionario : ${funcionarios}">
+              <td th:text="${funcionario.idFuncionario}"></td>
+              <td th:text="${funcionario.nome}"></td>
+              <td th:text="${funcionario.cpf}"></td>
+              <td th:text="${funcionario.email}"></td>
+              <td th:text="${funcionario.cargo != null ? funcionario.cargo.nome : 'Sem Cargo'}"></td>
+              <td
+                th:text="${'R$ ' + #numbers.formatDecimal(funcionario.salarioFuncionario, 1, 'POINT', 2, 'COMMA')}"
+              ></td>
+              <td>
+                <a
+                  th:href="@{/funcionario/editar/{id}(id=${funcionario.idFuncionario})}"
+                  class="btn btn-secondary"
+                  >Editar</a
+                >
+                <a
+                  th:href="@{/funcionario/excluir/{id}(id=${funcionario.idFuncionario})}"
+                  class="btn btn-danger"
+                  >Excluir</a
+                >
+                <a
+                  th:href="@{/funcionario/detalhes/{id}(id=${funcionario.idFuncionario})}"
+                  class="btn btn-primary"
+                  >Detalhes</a
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

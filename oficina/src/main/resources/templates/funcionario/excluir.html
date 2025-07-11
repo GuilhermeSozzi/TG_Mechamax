@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Excluir - Funcionário</title>
+    <link rel="stylesheet" th:href="@{/index.css}" />
+  </head>
+  <body>
+    <div th:replace="~{fragments/header :: header}"></div>
+    <div class="container">
+      <h1>Exclusão de Funcionário</h1>
+      <p>Você tem certeza que deseja excluir o seguinte funcionário?</p>
+      <form
+        th:action="@{/funcionario/excluir}"
+        th:object="${funcionario}"
+        method="post"
+        class="app-form"
+      >
+        <input type="hidden" th:field="*{idFuncionario}" />
+
+        <div class="form-group">
+          <label>Nome:</label>
+          <input type="text" th:field="*{nome}" readonly />
+        </div>
+
+        <div class="form-group">
+          <label>CPF:</label>
+          <input type="text" th:field="*{cpf}" readonly />
+        </div>
+
+        <div class="form-group">
+          <label>Cargo:</label>
+          <input type="text" th:field="*{cargo.nome}" readonly />
+        </div>
+
+        <div class="form-group">
+          <label>
+            <input type="checkbox" required /> Sim, confirmo a exclusão.
+          </label>
+        </div>
+
+        <input type="submit" value="Excluir" class="btn btn-danger" />
+        <a href="/funcionario" class="btn btn-secondary"
+          >Voltar para lista de Funcionários</a
+        >
+      </form>
+    </div>
+  </body>
+</html>

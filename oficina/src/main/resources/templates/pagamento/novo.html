@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Novo Pagamento</title>
+    <link rel="stylesheet" th:href="@{/index.css}" />
+  </head>
+  <body>
+    <div th:replace="~{fragments/header :: header}"></div>
+    <div class="container">
+      <h1>Cadastrar Novo Pagamento</h1>
+      <div th:if="${erro}">
+        <p style="color: red" th:text="${erro}"></p>
+      </div>
+      <form
+        th:action="@{/pagamento/novo}"
+        th:object="${pagamento}"
+        method="post"
+        class="app-form"
+      >
+        <div class="form-group">
+          <label for="ordemServico">Ordem de Serviço (ID):</label>
+          <select id="ordemServico" th:field="*{ordemServico}" required>
+            <option
+              th:each="ordem : ${ordensServico}"
+              th:value="${ordem.codOrdem}"
+              th:text="${ordem.codOrdem}"
+            ></option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="valorPagamento">Valor do Pagamento:</label>
+          <input
+            type="number"
+            id="valorPagamento"
+            th:field="*{valorPagamento}"
+            step="0.01"
+            min="0"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="numeroParcela">Número da Parcela:</label>
+          <input
+            type="number"
+            id="numeroParcela"
+            th:field="*{numeroParcela}"
+            min="1"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="tipoPagamento">Tipo de Pagamento:</label>
+          <select id="tipoPagamento" th:field="*{tipoPagamento}" required>
+            <option value="">Selecione...</option>
+            <option value="PIX">PIX</option>
+            <option value="Dinheiro">Dinheiro</option>
+            <option value="Cartão de Crédito">Cartão de Crédito</option>
+            <option value="Cartão de Débito">Cartão de Débito</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="dataPagamentoRealizado">Data do Pagamento:</label>
+          <input
+            type="text"
+            id="dataPagamentoRealizado"
+            th:field="*{dataPagamentoRealizado}"
+            placeholder="dd/mm/aaaa"
+            pattern="(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\d{4}"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="statusPagamento">Status do Pagamento:</label>
+          <select id="statusPagamento" th:field="*{statusPagamento}" required>
+            <option value="Pagamento Realizado">Pagamento Realizado</option>
+            <option value="Pendente">Pendente</option>
+            <option value="Cancelado">Cancelado</option>
+          </select>
+        </div>
+
+        <input type="submit" value="Cadastrar" class="btn btn-primary" />
+        <a href="/pagamento" class="btn btn-secondary"
+          >Voltar para Lista</a
+        >
+      </form>
+    </div>
+  </body>
+</html>

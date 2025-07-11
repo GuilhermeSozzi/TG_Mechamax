@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f2f5; /* Um cinza muito claro para o fundo, mais suave que branco puro */
+    color: #111; /* Cor de texto principal (preto) */
+    margin: 0;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto; /* Centraliza o conteúdo principal */
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* --- CABEÇALHO DE NAVEGAÇÃO --- */
+.main-header {
+    background-color: #232f3e; /* Azul escuro da Amazon */
+    padding: 10px 5%; /* Espaçamento interno */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center; /* Centraliza a barra de navegação */
+}
+
+.header-nav {
+    list-style: none; /* Remove os pontos da lista */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap; /* Permite que os itens quebrem a linha */
+    gap: 5px; /* Espaço pequeno entre os links */
+}
+
+.header-nav a {
+    display: block;
+    padding: 10px 15px;
+    color: #ffffff; /* Letra branca */
+    text-decoration: none; /* REMOVE O SUBLINHADO */
+    font-weight: 500;
+    font-size: 14px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.header-nav a:hover {
+    background-color: #37475a; /* Cor de fundo ao passar o mouse */
+}
+
+/* --- TÍTULOS E TEXTOS PADRÃO --- */
+h1, h2, h3 {
+    color: #232f3e; /* Títulos com o azul escuro do header */
+    margin-top: 0;
+}
+
+/* --- ESTILO PARA BOTÕES PADRÃO --- */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    border: none;
+}
+
+.btn-primary {
+    background-color: #007bff; /* Azul primário */
+    color: #ffffff;
+}
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-secondary {
+    background-color: #6c757d; /* Cinza */
+    color: #ffffff;
+}
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.btn-danger {
+    background-color: #dc3545; /* Vermelho para exclusão */
+    color: #ffffff;
+}
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* --- ESTILO PARA TABELAS (Listas) --- */
+.data-table {
+    width: 100%;
+    border-collapse: collapse; /* Une as bordas das células */
+    margin-top: 20px;
+}
+
+.data-table th, .data-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6; /* Linha cinza separando as linhas */
+}
+
+.data-table th {
+    background-color: #e9ecef; /* Fundo do cabeçalho da tabela */
+    font-weight: bold;
+    color: #343a40;
+}
+
+.data-table tr:hover {
+    background-color: #f8f9fa; /* Efeito de hover na linha */
+}
+
+/* --- ESTILO PARA FORMULÁRIOS (Novo/Editar) --- */
+.app-form .form-group {
+    margin-bottom: 15px;
+}
+
+.app-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #495057;
+}
+
+.app-form input[type="text"],
+.app-form input[type="email"],
+.app-form input[type="number"],
+.app-form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-sizing: border-box; /* Garante que o padding não aumente a largura total */
+}
+
+.app-form input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}

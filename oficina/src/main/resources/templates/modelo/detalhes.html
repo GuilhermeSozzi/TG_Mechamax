@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detalhes do Modelo</title>
+    <link rel="stylesheet" th:href="@{/index.css}" />
+  </head>
+  <body>
+    <div th:replace="~{fragments/header :: header}"></div>
+    <div class="container">
+      <h1>Detalhes sobre o Modelo</h1>
+      <form th:object="${modelo}" class="app-form">
+        <div class="form-group">
+          <label>Código do Modelo:</label>
+          <input type="text" th:field="*{idModelo}" readonly />
+        </div>
+        <div class="form-group">
+          <label>Nome do Modelo:</label>
+          <input type="text" th:field="*{nome}" readonly />
+        </div>
+        <a href="/modelo" class="btn btn-secondary"
+          >Voltar para lista de Modelos</a
+        >
+      </form>
+    </div>
+  </body>
+</html>

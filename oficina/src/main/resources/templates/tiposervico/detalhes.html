@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detalhes do Tipo de Serviço</title>
+    <link rel="stylesheet" th:href="@{/index.css}" />
+  </head>
+  <body>
+    <div th:replace="~{fragments/header :: header}"></div>
+    <div class="container">
+      <h1>Detalhes sobre o Tipo de Serviço</h1>
+      <form th:object="${tipoServico}" class="app-form">
+        <div class="form-group">
+          <label>Código:</label>
+          <input type="text" th:field="*{idTipo}" readonly />
+        </div>
+        <div class="form-group">
+          <label>Nome:</label>
+          <input type="text" th:field="*{nome}" readonly />
+        </div>
+
+        <a href="/tipoServico" class="btn btn-secondary"
+          >Voltar para Lista</a
+        >
+      </form>
+    </div>
+  </body>
+</html>

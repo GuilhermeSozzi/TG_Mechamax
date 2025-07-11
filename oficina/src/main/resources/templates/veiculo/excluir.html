@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Excluir - Veículo</title>
+    <link rel="stylesheet" th:href="@{/index.css}" />
+  </head>
+  <body>
+    <div th:replace="~{fragments/header :: header}"></div>
+    <div class="container">
+      <h1>Exclusão de Veículo</h1>
+      <p>Você tem certeza que deseja excluir o seguinte veículo?</p>
+      <form
+        th:action="@{/veiculo/excluir}"
+        th:object="${veiculo}"
+        method="post"
+        class="app-form"
+      >
+        <input type="hidden" th:field="*{veiCodigo}" />
+
+        <div class="form-group">
+          <label for="placa">Placa:</label>
+          <input type="text" id="placa" th:field="*{placa}" readonly />
+        </div>
+        <div class="form-group">
+          <label for="modelo">Modelo:</label>
+          <input type="text" id="modelo" th:field="*{modelo.nome}" readonly />
+        </div>
+        <div class="form-group">
+          <label for="cliente">Cliente:</label>
+          <input type="text" id="cliente" th:field="*{cliente.nome}" readonly />
+        </div>
+
+        <div class="form-group">
+          <label>
+            <input type="checkbox" required /> Sim, confirmo a exclusão.
+          </label>
+        </div>
+
+        <input type="submit" value="Excluir" class="btn btn-danger" />
+        <a href="/veiculo" class="btn btn-secondary"
+          >Voltar para lista de Veículos</a
+        >
+      </form>
+    </div>
+  </body>
+</html>

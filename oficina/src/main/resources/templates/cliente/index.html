@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gerenciar Clientes</title>
+    <link rel="stylesheet" th:href="@{/index.css}" />
+  </head>
+  <body>
+    <div th:replace="~{fragments/header :: header}"></div>
+    <div class="container">
+      <h1>Clientes cadastrados no sistema</h1>
+
+      <div>
+        <h2>Lista de Clientes</h2>
+        <div style="margin-bottom: 15px">
+          <a th:href="@{/cliente/novo}" class="btn btn-primary"
+            >Adicionar Novo Cliente</a
+          >
+        </div>
+
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>CPF</th>
+              <th>E-mail</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="cliente : ${clientes}">
+              <td th:text="${cliente.idCliente}"></td>
+              <td th:text="${cliente.nome}"></td>
+              <td th:text="${cliente.cpf}"></td>
+              <td th:text="${cliente.email}"></td>
+              <td>
+                <a
+                  th:href="@{/cliente/editar/{id}(id=${cliente.idCliente})}"
+                  class="btn btn-secondary"
+                  >Editar</a
+                >
+                <a
+                  th:href="@{/cliente/excluir/{id}(id=${cliente.idCliente})}"
+                  class="btn btn-danger"
+                  >Excluir</a
+                >
+                <a
+                  th:href="@{/cliente/detalhes/{id}(id=${cliente.idCliente})}"
+                  class="btn btn-primary"
+                  >Detalhes</a
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

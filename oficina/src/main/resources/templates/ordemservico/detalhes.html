@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Detalhes da Ordem de Serviço</title>
+    <link rel="stylesheet" th:href="@{/index.css}" />
+  </head>
+  <body>
+    <div th:replace="~{fragments/header :: header}"></div>
+    <div class="container">
+      <h1>Detalhes da Ordem de Serviço</h1>
+      <div class="app-form">
+        <div class="form-group">
+          <label>Código da Ordem:</label>
+          <input type="text" th:field="*{ordemservico.codOrdem}" readonly />
+        </div>
+        <div class="form-group">
+          <label>Data do Serviço:</label>
+          <input
+            type="text"
+            th:value="*{#dates.format(ordemservico.dataServico, 'dd/MM/yyyy')}"
+            readonly
+          />
+        </div>
+        <div class="form-group">
+          <label>Valor:</label>
+          <input
+            type="text"
+            th:value="${'R$ ' + #numbers.formatDecimal(ordemservico.valorOrdem, 1, 'POINT', 2, 'COMMA')}"
+            readonly
+          />
+        </div>
+        <div class="form-group">
+          <label>Número de Parcelas:</label>
+          <input type="number" th:field="*{ordemservico.numeroParcelas}" readonly />
+        </div>
+        <div class="form-group">
+          <label>Observações:</label>
+          <textarea th:field="*{ordemservico.observacoes}" readonly></textarea>
+        </div>
+        <div class="form-group">
+          <label>Veículo (Placa):</label>
+          <input type="text" th:field="*{ordemservico.veiculo.placa}" readonly />
+        </div>
+        <div class="form-group">
+          <label>Funcionário Responsável:</label>
+          <input
+            type="text"
+            th:field="*{ordemservico.funcionario.nome}"
+            readonly
+          />
+        </div>
+        <div class="form-group">
+          <label>Tipo de Serviço:</label>
+          <input
+            type="text"
+            th:field="*{ordemservico.tipoServico.nome}"
+            readonly
+          />
+        </div>
+      </div>
+
+      <div style="margin-top: 30px">
+        <h2>Pagamentos Relacionados</h2>
+        <div th:if="${not #lists.isEmpty(ordemservico.pagamentos)}">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Nº Parcela</th>
+                <th>Valor</th>
+                <th>Tipo</th>
+                <th>Data Pagamento</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="pag : ${ordemservico.pagamentos}">
+                <td th:text="${pag.numeroParcela}"></td>
+                <td
+                  th:text="${'R$ ' + #numbers.formatDecimal(pag.valorPagamento, 1, 'POINT', 2, 'COMMA')}"
+                ></td>
+                <td th:text="${pag.tipoPagamento}"></td>
+                <td
+                  th:text="${#dates.format(pag.dataPagamentoRealizado, 'dd/MM/yyyy')}"
+                ></td>
+                <td th:text="${pag.statusPagamento}"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div th:if="${#lists.isEmpty(ordemservico.pagamentos)}">
+          <p>Não há pagamentos registrados para esta ordem de serviço.</p>
+        </div>
+      </div>
+
+      <a
+        href="/ordemservico"
+        class="btn btn-secondary"
+        style="margin-top: 20px"
+        >Voltar para Lista</a
+      >
+    </div>
+  </body>
+</html>

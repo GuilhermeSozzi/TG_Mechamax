@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gerenciar Ordens de Serviço</title>
+    <link rel="stylesheet" th:href="@{/index.css}" />
+  </head>
+  <body>
+    <div th:replace="~{fragments/header :: header}"></div>
+    <div class="container">
+      <h1>Ordens de Serviço cadastradas no sistema</h1>
+
+      <div>
+        <h2>Lista de Ordens de Serviço</h2>
+        <div style="margin-bottom: 15px">
+          <a th:href="@{/ordemservico/novo}" class="btn btn-primary"
+            >Criar Nova Ordem de Serviço</a
+          >
+        </div>
+
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Data</th>
+              <th>Valor</th>
+              <th>Parcelas</th>
+              <th>Tipo de Serviço</th>
+             
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="ordem : ${ordensServico}">
+              <td th:text="${ordem.codOrdem}"></td>
+              <td th:text="${#dates.format(ordem.dataServico, 'dd/MM/yyyy')}"></td>
+              <td
+                th:text="${'R$ ' + #numbers.formatDecimal(ordem.valorOrdem, 1, 'POINT', 2, 'COMMA')}"
+              ></td>
+              <td th:text="${ordem.numeroParcelas}"></td>
+              <td
+                th:text="${ordem.tipoServico != null ? ordem.tipoServico.nome : 'N/A'}"
+              ></td>
+             
+              <td>
+                <a
+                  th:href="@{/ordemservico/editar/{id}(id=${ordem.codOrdem})}"
+                  class="btn btn-secondary"
+                  >Editar</a
+                >
+                <a
+                  th:href="@{/ordemservico/excluir/{id}(id=${ordem.codOrdem})}"
+                  class="btn btn-danger"
+                  >Excluir</a
+                >
+                <a
+                  th:href="@{/ordemservico/detalhes/{id}(id=${ordem.codOrdem})}"
+                  class="btn btn-primary"
+                  >Detalhes</a
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

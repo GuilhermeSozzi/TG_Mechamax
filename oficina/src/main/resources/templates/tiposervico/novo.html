@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Novo Tipo de Serviço</title>
+    <link rel="stylesheet" th:href="@{/index.css}" />
+  </head>
+  <body>
+    <div th:replace="~{fragments/header :: header}"></div>
+    <div class="container">
+      <h1>Cadastrar Novo Tipo de Serviço</h1>
+      <form
+        th:action="@{/tipoServico/novo}"
+        th:object="${tipoServico}"
+        method="post"
+        class="app-form"
+      >
+        <div class="form-group">
+          <label for="nome">Nome do Tipo de Serviço:</label>
+          <input
+            type="text"
+            id="nome"
+            th:field="*{nome}"
+            minlength="1"
+            maxlength="50"
+            required
+          />
+        </div>
+        <input type="submit" value="Cadastrar" class="btn btn-primary" />
+        <a href="/tipoServico" class="btn btn-secondary"
+          >Voltar para Lista</a
+        >
+      </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detalhes do Cargo</title>
+    <link rel="stylesheet" th:href="@{/index.css}" />
+  </head>
+  <body>
+    <div th:replace="~{fragments/header :: header}"></div>
+    <div class="container">
+      <h1>Detalhes sobre o Cargo</h1>
+      <div class="app-form">
+        <div class="form-group">
+          <label>Código do Cargo:</label>
+          <input type="text" th:value="${cargo.idCargo}" readonly />
+        </div>
+        <div class="form-group">
+          <label>Nome do Cargo:</label>
+          <input type="text" th:value="${cargo.nome}" readonly />
+        </div>
+      </div>
+
+      <div style="margin-top: 30px">
+        <h2>Funcionários Neste Cargo</h2>
+        <!-- Verifica se a lista de funcionários não está vazia -->
+        <div th:if="${not #lists.isEmpty(cargo.funcionarios)}">
+          <ul class="data-table">
+            <li
+              th:each="funcionario : ${cargo.funcionarios}"
+              th:text="${funcionario.nome}"
+              style="
+                padding: 10px;
+                border-bottom: 1px solid #dee2e6;
+                list-style: none;
+              "
+            ></li>
+          </ul>
+        </div>
+        <!-- Mensagem exibida se a lista estiver vazia -->
+        <div th:if="${#lists.isEmpty(cargo.funcionarios)}">
+          <p>Não há funcionários cadastrados neste cargo.</p>
+        </div>
+      </div>
+
+      <a
+        href="/cargo"
+        class="btn btn-secondary"
+        style="margin-top: 20px"
+        >Voltar para lista de Cargos</a
+      >
+    </div>
+  </body>
+</html>

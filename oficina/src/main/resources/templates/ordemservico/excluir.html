@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Excluir - Ordem de Serviço</title>
+    <link rel="stylesheet" th:href="@{/index.css}" />
+  </head>
+  <body>
+    <div th:replace="~{fragments/header :: header}"></div>
+    <div class="container">
+      <h1>Exclusão de Ordem de Serviço</h1>
+      <p>Você tem certeza que deseja excluir a seguinte ordem de serviço?</p>
+      <form
+        th:action="@{/ordemservico/excluir}"
+        th:object="${ordemservico}"
+        method="post"
+        class="app-form"
+      >
+        <input type="hidden" th:field="*{codOrdem}" />
+
+        <div class="form-group">
+          <label>Data do Serviço:</label>
+          <input
+            type="text"
+            th:value="*{#dates.format(dataServico, 'dd/MM/yyyy')}"
+            readonly
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Veículo (Placa):</label>
+          <input type="text" th:field="*{veiculo.placa}" readonly />
+        </div>
+
+        <div class="form-group">
+          <label>Tipo de Serviço:</label>
+          <input type="text" th:field="*{tipoServico.nome}" readonly />
+        </div>
+
+        <div class="form-group">
+          <label>
+            <input type="checkbox" required /> Sim, confirmo a exclusão.
+          </label>
+        </div>
+
+        <input type="submit" value="Excluir" class="btn btn-danger" />
+        <a href="/ordemservico" class="btn btn-secondary"
+          >Voltar para Lista</a
+        >
+      </form>
+    </div>
+  </body>
+</html>

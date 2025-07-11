@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gerenciar Pagamentos</title>
+    <link rel="stylesheet" th:href="@{/index.css}" />
+  </head>
+  <body>
+    <div th:replace="~{fragments/header :: header}"></div>
+    <div class="container">
+      <h1>Pagamentos cadastrados no sistema</h1>
+
+      <div>
+        <h2>Lista de Pagamentos</h2>
+        <div style="margin-bottom: 15px">
+          <a th:href="@{/pagamento/novo}" class="btn btn-primary"
+            >Adicionar Novo Pagamento</a
+          >
+        </div>
+
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>OS</th>
+              <th>Valor</th>
+              <th>Nº Parcela</th>
+              <th>Tipo</th>
+              <th>Data</th>
+              <th>Status</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="pagamento : ${pagamentos}">
+              <td th:text="${pagamento.idPagamento}"></td>
+              <td th:text="${pagamento.ordemServico != null ? pagamento.ordemServico.codOrdem : 'N/A'}"></td>
+              <td
+                th:text="${'R$ ' + #numbers.formatDecimal(pagamento.valorPagamento, 1, 'POINT', 2, 'COMMA')}"
+              ></td>
+              <td th:text="${pagamento.numeroParcela}"></td>
+              <td th:text="${pagamento.tipoPagamento}"></td>
+              <td
+                th:text="${#dates.format(pagamento.dataPagamentoRealizado, 'dd/MM/yyyy')}"
+              ></td>
+              <td th:text="${pagamento.statusPagamento}"></td>
+              <td>
+                <a
+                  th:href="@{/pagamento/editar/{id}(id=${pagamento.idPagamento})}"
+                  class="btn btn-secondary"
+                  >Editar</a
+                >
+                <a
+                  th:href="@{/pagamento/excluir/{id}(id=${pagamento.idPagamento})}"
+                  class="btn btn-danger"
+                  >Excluir</a
+                >
+                <a
+                  th:href="@{/pagamento/detalhes/{id}(id=${pagamento.idPagamento})}"
+                  class="btn btn-primary"
+                  >Detalhes</a
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

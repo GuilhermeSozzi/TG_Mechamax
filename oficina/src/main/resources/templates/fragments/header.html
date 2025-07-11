@@ -1,0 +1,21 @@
+<header class="main-header" th:fragment="header">
+  <nav class="header-nav">
+    <a th:href="@{/}">Home</a>
+    <a th:href="@{/cliente}">Gerenciar Clientes</a>
+    <a th:href="@{/modelo}">Gerenciar Modelos</a>
+    <a th:href="@{/veiculo}">Gerenciar Veículos</a>
+    <a th:href="@{/funcionario}">Gerenciar Funcionários</a>
+    <a th:href="@{/cargo}">Gerenciar Cargos</a>
+    <a th:href="@{/ordemservico}">Ordens de Serviço</a>
+    <a th:href="@{/tipoServico}">Tipos de Serviço</a>
+    <a th:href="@{/pagamento}">Pagamentos</a>
+  </nav>
+</header>
+
+<!-- Este fragmento de head não foi alterado -->
+<head th:fragment="head">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Oficina MechaMax</title>
+    <link rel="stylesheet" th:href="@{/index.css}" />
+</head>
